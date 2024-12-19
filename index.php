@@ -18,13 +18,13 @@
     <div class="collapse navbar-collapse" id="mynavbar">
       <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Home</a>
+          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'Home' ? '': '';  ?>" href="javascript:void(0)">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">Register</a>
+          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'Register' ? '': '';  ?>" href="javascript:void(0)">Register</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0)">List</a>
+          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'List' ? '': '';  ?>" href="javascript:void(0)">List</a>
         </li>
       </ul>
       <form class="d-flex">
@@ -36,8 +36,24 @@
 </nav>
 
 <div class="container-fluid mt-3">
-  <h3>Navbar Forms</h3>
-  <p>You can also include forms inside the navigation bar.</p>
+<?php 
+      if (isset($_GET['page'])){
+        $page=$_GET['page'];
+        switch($page){
+          case'Home':
+                include 'index.php';
+                break;
+                case'Register':
+                  include 'form.php';
+                  break;
+                  case'List':
+                    include 'Registered_list.php';
+                    break; 
+        }
+      }
+      
+      
+      ?>
 </div>
 
 </body>
