@@ -1,62 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
+<html>
+    <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+  <link rel="stylesheet" href="style.css">
+  </head>
+
+
 <body>
 
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">SVJ</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'Home' ? '': '';  ?>" href="javascript:void(0)">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'Register' ? '': '';  ?>" href="javascript:void(0)">Register</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link <?php echo ($_GET['page'] ?? '') === 'List' ? '': '';  ?>" href="javascript:void(0)">List</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="text" placeholder="Search">
-        <button class="btn btn-primary" type="button">Search</button>
-      </form>
-    </div>
-  </div>
-</nav>
+<!-- Top navigation -->
+<div class="topnav">
+  <a href="index.php?page=home">Home</a>
+  <a href="index.php?page=register">Register Form</a>
+  <a href="index.php?page=list">List</a>
 
-<div class="container-fluid mt-3">
-<?php 
-      if (isset($_GET['page'])){
-        $page=$_GET['page'];
-        switch($page){
-          case'Home':
-                include 'index.php';
-                break;
-                case'Register':
-                  include 'form.php';
-                  break;
-                  case'List':
-                    include 'Registered_list.php';
-                    break; 
-        }
-      }
-      
-      
-      ?>
+  <div class="topnav-right">
+    <a href="#search">Search</a>
+    <a href="#about">About</a>
+  </div>
 </div>
+
+        <!--Body diri-->
+<article>
+<?php
+            // Modular Section
+
+            $page = $_GET['page'] ?? 'dashboard'; 
+
+            switch ($page) {
+
+                    case 'register':
+                        include 'register.php'; 
+                        break;     
+                case 'list':
+                    include 'list.php'; 
+                    break;
+                    case 'home':
+                      default: 
+                          include 'homepage.php'; 
+                          break;
+            }
+            ?>
+  </article>
 
 </body>
 </html>
-
-
